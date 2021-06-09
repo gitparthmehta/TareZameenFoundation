@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Tare Zameen Foundation</string>
+
+
+    <string name="login_title">Welcome Back</string>
+    <string name="signup_title">Welcome</string>
+    <string name="forgotpassword_title">Forgot Password</string>
+    <string name="resetpassword_title">Reset Password</string>
+    <string name="profile_title">Profile</string>
+
+
+    //login textfield
+
+    <string name="email_text">Email</string>
+    <string name="emailhint_text">Enter Your Email</string>
+    <string name="password_text">Password</string>
+    <string name="passwordhint_text">Enter Your Password</string>
+
+    // referal code
+    <string name="referalcode_checkboxtext">If you have any referral Click here</string>
+    <string name="referalcode_text">Referral ID </string>
+
+    //forgot password
+    <string name="recive_link">Didn\'t Receive the link? Click here </string>
+    <string name="forgotpassword_text">Forgot Password? Click here </string>
+    <string name="newsignup_text">New To TareZameen App? SignUp here </string>
+    <string name="newlogin_text">Already have an Account? SignIn here </string>
+
+    //reset password
+    <string name="newpassword_text">New password </string>
+    <string name="newpasswordhint_text">Enter a new password </string>
+    <string name="reenter_password_text">Re-enter new password </string>
+
+    //profile
+    <string name="name_text">Name *</string>
+    <string name="phone_text">Phone number *</string>
+    <string name="date_text">Date of Birth *</string>
+    <string name="aadharcard_text">Aadhar Card *</string>
+    <string name="startdate_text">Start Date</string>
+    <string name="startdatehint_text">Date of joining</string>
+    <string name="enddate_text">End Date *</string>
+    <string name="designation_text">Designation *</string>
+    <string name="college_text">College Name</string>
+    <string name="resume_text">Upload Resume *</string>
+    <string name="termandcondition_text">Accepting all terms and conditions</string>
+<!--    <string name="warning_text">kk</string>-->
+    <string name="warning_text">Before Clicking on Submit please check all the information uploaded previously is correct as this will reflect in your certificate. If any kind of help or assistance required please press on "Contact Us"</string>
+    <string name="contactus_text">Contact Us</string>
+
+
+    //buttons text
+    <string name="login_text">Login</string>
+    <string name="signup_text">SignUp</string>
+    <string name="reset_text">Reset</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="submit_text">Submit</string>
+    <string name="next_text">Next</string>
+
+    <string-array name="locale_array">
+        <item>en</item>
+        <item>es</item>
+        <item>fa</item>
+        <item>fr</item>
+    </string-array>
+
+
+    //error message
+    <string name="emailerror_msg">Please Enter your Email</string>
+    <string name="passworderror_msg">Please Enter your Password</string>
+    <string name="notvalidemail_msg">Please Enter Valid Email</string>
+    <string name="notvalireferalcode_msg">Please Enter Valid Referalcode</string>
+    <string name="notmatchpassword_msg">Password could not match</string>
+    <string name="notvalidpassword_msg">Password must contain mix of upper and lower case letters as well as digits and one special charecter(8-20)"</string>
+
+
+</resources>
