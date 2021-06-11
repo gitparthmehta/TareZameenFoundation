@@ -366,7 +366,7 @@
                             android:layout_marginTop="20dp"
                             android:fontFamily="@font/delius"
                             android:text="@string/resume_text"
-                            android:textColor="@color/light_text_color"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/common_small_text_size" />
 
                         <ImageView

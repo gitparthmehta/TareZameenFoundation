@@ -84,7 +84,6 @@ public class ProfileActivity extends AppCompatActivity implements DatePickerDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
-        getSupportActionBar().setTitle("Profile");
 
         clickListner();
         edtStartDate.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
@@ -298,7 +297,7 @@ public class ProfileActivity extends AppCompatActivity implements DatePickerDial
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String finalDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+        String finalDate = new SimpleDateFormat("MM/dd/yyyy").format(date);
         switch (this.datePickerInput) {
             case R.id.edtDateOfBirth:
                 this.edtDateOfBirth.setText(finalDate);

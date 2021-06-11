@@ -57,10 +57,9 @@
     <string name="next_text">Next</string>
 
     <string-array name="locale_array">
-        <item>en</item>
-        <item>es</item>
-        <item>fa</item>
-        <item>fr</item>
+        <item>Select Designation *</item>
+        <item>Dummy data2</item>
+        <item>Dummy data3</item>
     </string-array>
 
 
