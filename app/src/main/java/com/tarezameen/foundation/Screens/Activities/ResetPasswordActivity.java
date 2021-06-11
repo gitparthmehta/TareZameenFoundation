@@ -2,6 +2,7 @@ package com.tarezameen.foundation.Screens.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -109,6 +110,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                 } else if (edtNewPassword.getText().toString().equals(edtReEnterPassword.getText().toString()) && edtReEnterPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
                     Toast.makeText(ResetPasswordActivity.this, "Password Matched", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
 
                 } else {
                     Toast.makeText(ResetPasswordActivity.this, getResources().getString(R.string.notmatchpassword_msg), Toast.LENGTH_SHORT).show();

@@ -85,7 +85,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     layoutEmail.setError(getResources().getString(R.string.notvalidemail_msg));
 
                 } else {
-                    Intent intent = new Intent(ForgotPasswordActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
 

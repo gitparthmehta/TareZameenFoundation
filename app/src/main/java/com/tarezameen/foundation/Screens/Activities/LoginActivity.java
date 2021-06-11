@@ -2,11 +2,13 @@ package com.tarezameen.foundation.Screens.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -125,8 +127,10 @@ public class LoginActivity extends AppCompatActivity {
         edt_Email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    edt_Email.setHint(getResources().getString(R.string.emailhint_text));
+                if (hasFocus) {
+                    ((InputMethodManager) LoginActivity.this.getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(LoginActivity.this.edt_Email, 2);
+                    LoginActivity.this.edt_Email.setHint(LoginActivity.this.getResources().getString(R.string.emailhint_text));
+                }
                 else
                     edt_Email.setHint("");
             }

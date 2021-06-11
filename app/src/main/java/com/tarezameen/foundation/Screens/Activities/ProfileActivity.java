@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,12 +15,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -28,13 +31,20 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.tarezameen.foundation.R;
+import com.tsongkha.spinnerdatepicker.DatePicker;
+import com.tsongkha.spinnerdatepicker.DatePickerDialog;
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.img_Profile)
     ImageView img_Profile;
@@ -59,7 +69,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final int SELECT_PICTURE = 1;
 
+    @BindView(R.id.edtDateOfBirth)
+    TextInputEditText edtDateOfBirth;
+
+    @BindView(R.id.edtEndDate)
+    TextInputEditText edtEndDate;
+    @BindView(R.id.edtStartDate)
+    TextInputEditText edtStartDate;
     private String selectedImagePath;
+    int datePickerInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +87,7 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Profile");
 
         clickListner();
+        edtStartDate.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
 
 
     }
@@ -146,10 +165,43 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     private void clickListner() {
+
+        this.edtDateOfBirth.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    ((InputMethodManager) ProfileActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ProfileActivity.this.getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                }
+                Calendar c = Calendar.getInstance();
+                new SpinnerDatePickerDialogBuilder().context(ProfileActivity.this).callback(ProfileActivity.this).spinnerTheme(R.style.NumberPickerStyle).showTitle(true).showDaySpinner(true).defaultDate(c.get(1), c.get(2), c.get(5)).build().show();
+            }
+        });
+        this.edtEndDate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int unused = ProfileActivity.this.datePickerInput = v.getId();
+                try {
+                    ((InputMethodManager) ProfileActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ProfileActivity.this.getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                }
+                Calendar c = Calendar.getInstance();
+                new SpinnerDatePickerDialogBuilder().context(ProfileActivity.this).callback(ProfileActivity.this).spinnerTheme(R.style.NumberPickerStyle).showTitle(true).showDaySpinner(true).defaultDate(c.get(1), c.get(2), c.get(5)).build().show();
+            }
+        });
+        this.edtDateOfBirth.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                datePickerInput = v.getId();
+                try {
+                    ((InputMethodManager) ProfileActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(ProfileActivity.this.getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                }
+                Calendar c = Calendar.getInstance();
+                new SpinnerDatePickerDialogBuilder().context(ProfileActivity.this).callback(ProfileActivity.this).spinnerTheme(R.style.NumberPickerStyle).showTitle(true).showDaySpinner(true).defaultDate(c.get(1), c.get(2), c.get(5)).build().show();
+            }
+        });
         img_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestPermission();
+//                requestPermission();
 
             }
         });
@@ -236,5 +288,26 @@ public class ProfileActivity extends AppCompatActivity {
         }
         // this is our fallback here
         return uri.getPath();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy,MM,dd").parse(String.valueOf(year) + "," + String.valueOf(monthOfYear +1 ) + "," + String.valueOf(dayOfMonth));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String finalDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+        switch (this.datePickerInput) {
+            case R.id.edtDateOfBirth:
+                this.edtDateOfBirth.setText(finalDate);
+                return;
+            case R.id.edtEndDate:
+                this.edtEndDate.setText(finalDate);
+                return;
+            default:
+                return;
+        }
     }
 }
